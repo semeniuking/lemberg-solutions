@@ -4,5 +4,4 @@ new Glide('.glide', {
 	perView: 1,
 	gap: 20,
 	rewind: false,
-
 }).mount()

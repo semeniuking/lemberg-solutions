@@ -3,7 +3,7 @@
 @import 'components/mixins';
 @import 'components/variables';
 // Required Core Stylesheet
-@import "../../node_modules/@glidejs/glide/src/assets/sass/glide.core";
+@import "glide.core";
 
 html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
