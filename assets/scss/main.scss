@@ -2,11 +2,14 @@
 @import 'fonts';
 @import 'components/mixins';
 @import 'components/variables';
+// Required Core Stylesheet
+@import "../../node_modules/@glidejs/glide/src/assets/sass/glide.core";
 
 html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   height: 100%;
-  font-family: $nunito;
+  font-family: $roboto;
+  font-weight: 400;
 }
 
 body {
@@ -15,16 +18,155 @@ body {
   height: 100%;
   font-size: 16px;
   overflow-x: hidden;
+  color: #000;
 }
 
-.container {
-  position: relative;
+// styles for slider
 
-  max-width: 1170px;
-  margin: 0 auto;
-  width: 100%;
-  @media (max-width: 1200px) {
-    padding-left: 15px;
-    padding-right: 15px;
+.main, .glide, .glide__track, .glide__slides {
+  height: inherit;
+}
+
+.glide {
+  &__arrows {
+    position: absolute;
+    top: 90%;
+    left: 5%;
+    width: 90%;
+    @include display-flex;
+    @include justify-content-space-between;
+  }
+
+  &__arrow {
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 28px;
+    @media (max-width: 768px) {
+      font-size: 18px;
+    }
+    &--disabled{
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.slide {
+  color: #fff;
+  @include display-flex;
+  @include align-items-center;
+  padding-left: 88px;
+  @media (max-width: 992px) {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  &:first-child {
+    height: 100%;
+    background: url(../image/first-slide.png) 0 0/cover no-repeat;
+  }
+
+  &:nth-child(2) {
+    height: 100%;
+    background: url(../image/slide-two.png) 0 0/cover no-repeat;
+  }
+
+  &:nth-child(3) {
+    height: 100%;
+    background: url(../image/SlideThree.png) 0 0/cover no-repeat;
+  }
+
+  &__subtitle {
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 1.15;
+    text-transform: uppercase;
+    margin: 0;
+    padding-left: 0.285rem;
+    @media (max-width: 768px) {
+      font-size: 14px;
+    }
+  }
+
+  &__title {
+    font-family: $viga;
+    font-weight: 400;
+    font-size: 120px;
+    line-height: 1.15;
+    text-transform: uppercase;
+    margin-top: 0;
+    margin-bottom: 65px;
+    @media (max-width: 768px) {
+      font-size: 60px;
+      margin-bottom: 24px;
+    }
+  }
+
+  &__text {
+    max-width: 515px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 40px;
+    @media (max-width: 768px) {
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+  }
+
+  &__link {
+    font-size: 24px;
+    line-height: 1.25;
+    text-decoration: none;
+    position: relative;
+    color: #fff;
+    padding-left: 18px;
+    @media (max-width: 768px) {
+      font-size: 16px;
+    }
+
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      width: 10px;
+      aspect-ratio: 1/1;
+      left: 0;
+      top: 50%;
+      @include transform(translateY(-50%));
+      background-color: transparent;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      border-radius: 50%;
+      border: 1px solid #fff;
+      @include transition(background-color 0.2s ease-in);
+    }
+
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      width: calc(100% - 18px);
+      left: 18px;
+      bottom: 0;
+      height: 2px;
+      background-color: #fff;
+      @include transition(width 0.2s ease-in);
+    }
+
+    @media (min-width: 992px) {
+      &:hover {
+        &:before {
+          width: 0;
+        }
+
+        &:after {
+          background-color: #fff;
+        }
+      }
+    }
   }
 }
